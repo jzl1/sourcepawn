@@ -185,7 +185,7 @@ static cell_t Printf(IPluginContext* cx, const cell_t* params) {
       char next = *(p + 1);
       if (next == 's' || next == 'd' || next == 'f') {
         index++;
-        if (index > params[0])
+        if (index > (size_t)params[0])
           return cx->ThrowNativeError("Wrong number of arguments");
 
         cell_t* addr;

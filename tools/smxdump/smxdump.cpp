@@ -532,7 +532,7 @@ class DumpTool final {
 };
 
 static int Dump(const char* file) {
-    std::unique_ptr<FILE, decltype(&::fclose)> fp(fopen(file, "rb"), ::fclose);
+    std::unique_ptr<FILE, int (*)(FILE *)> fp(fopen(file, "rb"), ::fclose);
     auto smx = std::make_unique<SmxImage>(fp.get());
     if (!smx->validate()) {
         fprintf(stderr, "Could not parse %s: %s\n", file, smx->errorMessage());

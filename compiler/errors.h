@@ -168,8 +168,8 @@ class ReportManager
     std::vector<ErrorReport> error_list_;
     AutoErrorPos* pos_override_ = nullptr;
     std::unordered_set<int> warn_disable_;
-    int lastline_ = 0;
-    short lastfile_ = 0;
+    uint32_t lastline_ = 0;
+    uint32_t lastfile_ = 0;
 
     // This is not necessarily equal to the number of reports, since we
     // suppress generating a report if there are too many errors on one

@@ -198,7 +198,7 @@ smx_rtti_debug_method RttiBuilder::add_method(FunctionDecl* fun) {
 void RttiBuilder::finish_method(FunctionDecl* fun, const smx_rtti_debug_method& entry,
                                 LocalSlotSignature&& locals)
 {
-    assert(fun->cg()->pcode_end > fun->cg()->label.offset());
+    assert(fun->cg()->pcode_end > (uint32_t)fun->cg()->label.offset());
 
     auto& method = methods_->at(entry.method_index);
     method.pcode_end = fun->cg()->pcode_end;

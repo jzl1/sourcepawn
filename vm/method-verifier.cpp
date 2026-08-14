@@ -960,7 +960,7 @@ bool MethodVerifier::verifyStackOffset(cell_t offset, uint32_t op_size) {
                 return false;
             }
         } else {
-            if (offset >= local_sizes_.size()) {
+            if (offset >= (int)local_sizes_.size()) {
                 reportError(SP_ERROR_INSTRUCTION_PARAM);
                 return false;
             }

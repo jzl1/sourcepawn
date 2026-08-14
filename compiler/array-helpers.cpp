@@ -230,7 +230,7 @@ ArrayTypeResolver::SetRankSize(Expr* expr, int rank, int size)
     if (computed_[rank] == size)
         return;
 
-    if (rank == computed_.size() - 1) {
+    if (rank == (int)computed_.size() - 1) {
         // The final rank is allowed to vary as long as the size was not
         // explicitly specified. If it was specified, we'll error during
         // semantic analysis, so there's no need to handle it now.
@@ -592,7 +592,7 @@ bool ArrayValidator::ValidateRank(ArrayType* rank, Expr* init) {
         if (!AddCells(cells))
             return false;
 
-        if (rank->size() && bytes > rank->size()) {
+        if (rank->size() && bytes > (size_t)rank->size()) {
             report(str->pos(), 47);
             return false;
         }
@@ -1007,10 +1007,10 @@ void CompoundEmitter::AddInlineEnumStruct(EnumStructDecl* es, ArrayExpr* array) 
     }
 
     size_t emitted = data_size() - start_pos;
-    if (emitted < es->array_size())
-        pending_zeroes_ += es->array_size() - emitted;
+    if (emitted < (size_t)es->array_size())
+        pending_zeroes_ += (size_t)es->array_size() - emitted;
 
-    assert(data_size() - start_pos == es->array_size());
+    assert(data_size() - start_pos == (size_t)es->array_size());
 }
 
 void CompoundEmitter::AddInlineArray(LayoutFieldDecl* field, ArrayExpr* array) {
